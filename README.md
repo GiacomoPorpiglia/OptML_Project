@@ -41,7 +41,7 @@ All runs use a warmup → constant → cooldown LR schedule on the DCLM-edu data
 
 RankMe quantifies how well a model uses its representational capacity:
 
-$$\text{RankMe} = \exp\!\left(-\sum_i p_i \log p_i\right), \quad p_i = \frac{\sigma_i}{\|\boldsymbol{\sigma}\|_1}$$
+$$\text{RankMe} = \exp\left(-\sum_i p_i \log p_i\right), \quad p_i = \frac{\sigma_i}{\|\boldsymbol{\sigma}\|_1} + \epsilon$$
 
 where $\boldsymbol{\sigma}$ are the singular values of the batch of last-layer feature vectors. A higher score means the model distributes information across more dimensions rather than collapsing into a low-rank subspace.
 
