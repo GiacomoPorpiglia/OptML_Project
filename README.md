@@ -4,7 +4,7 @@ An EPFL OptML course project investigating how optimizer choice affects both tra
 
 ## Overview
 
-We train a ~50M parameter GPT model from scratch on educational web text and compare four optimizers — **AdamW**, **Adam**, **Muon**, and **SGD** — on two axes:
+We train a ~50M parameter GPT model from scratch on educational web text and compare five optimizers — **AdamW**, **Adam**, **Ademamix**, **Muon**, and **SGD** — on two axes:
 
 1. **Training efficiency**: cross-entropy loss and perplexity over time
 2. **Representation quality**: [RankMe](https://arxiv.org/abs/2210.02885) score, which measures the effective rank of the model's last-layer features via SVD entropy. Higher RankMe indicates more diverse, expressive representations.
@@ -13,7 +13,7 @@ We train a ~50M parameter GPT model from scratch on educational web text and com
 
 | Notebook | Purpose |
 |----------|---------|
-| `LM_train.ipynb` | Train the GPT model with any of the four optimizers, compare loss/perplexity curves, and save checkpoints |
+| `LM_train.ipynb` | Train the GPT model with any of the five optimizers, compare loss/perplexity curves, and save checkpoints |
 | `rankme_analysis.ipynb` | Load saved checkpoints and compute RankMe scores across training steps for each optimizer |
 
 ## Model Architecture
@@ -32,6 +32,7 @@ A small but modern GPT variant (~50M params, 8 layers, 512 hidden dim) with:
 |-----------|-------|
 | **AdamW** | Adam with decoupled weight decay; peak LR 3e-4 |
 | **Adam** | No weight decay; peak LR 3e-4 |
+| **Ademamix** | combines two EMA components with different decay rates, maintaining a slow moving average |
 | **Muon** | Second-order-inspired; applies to hidden 2D weights only at LR 0.02; embeddings/head use AdamW |
 | **SGD** | Nesterov momentum; peak LR 3e-4 |
 
